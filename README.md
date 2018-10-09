@@ -1,6 +1,6 @@
 # shopcar
 
-> A Vue.js project
+> Vue + Vuex 模拟添加购物车.
 
 ## Build Setup
 
