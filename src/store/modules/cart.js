@@ -18,7 +18,7 @@ const state = {
     {
       id: 4,
       name: '魅族16',
-      price: '2699'
+      price: '2888'
     }
   ],
   added: JSON.parse(localStorage.getItem('mycarts')) // 添加后的商品
