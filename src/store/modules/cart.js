@@ -21,18 +21,22 @@ const state = {
       price: '2699'
     }
   ],
-  added: [] // 添加后的商品
+  added: JSON.parse(localStorage.getItem('mycarts')) // 添加后的商品
 }
 const getters = {
   goodslist: state => state.goods_list,
   cartProducts: state => {
-    return state.added.map(({id, num}) => {
+    let res = state.added.map(({id, num}) => {
       let product = state.goods_list.find(n => n.id === id)
       return {
         ...product,
         num
       }
     })
+    if (res.length !== 0) {
+      localStorage.setItem('mycarts', JSON.stringify(res))
+    }
+    return JSON.parse(localStorage.getItem('mycarts')) || {}
   },
   totalPrice: (state, getters) => {
     let total = 0
@@ -77,6 +81,7 @@ const mutations = {
   },
   clearAll (state) {
     state.added = []
+    localStorage.setItem('mycarts', JSON.stringify(state.added))
   },
   del (state, product) {
     state.added.forEach((n, i) => {
@@ -84,6 +89,7 @@ const mutations = {
         state.added.splice(i, 1)
       }
     })
+    localStorage.setItem('mycarts', JSON.stringify(state.added))
   }
 }
 

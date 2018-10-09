@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>已选择商品</h3>
+    <h3>购物车</h3>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -22,7 +22,7 @@
                 </td>
             </tr>
             <tr v-if="!cartProducts.length">
-                <td colspan="5" class="text-center">您的购物车空空如也。。。</td>
+                <td colspan="5" class="text-center">太惨了吧，购物车什么也没有！</td>
             </tr>
         </tbody>
     </table>
@@ -35,14 +35,15 @@ export default {
   name: 'cart',
   data () {
     return {
-    //   cartProducts: []
     }
   },
   methods: {
     ...mapActions(['delGoods'])
   },
   computed: {
-    ...mapGetters(['cartProducts'])
+    ...mapGetters({ // 这样可以获取
+      cartProducts: 'cartProducts'
+    })
   },
   created () {
   }
